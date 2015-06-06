@@ -38,15 +38,15 @@ angular.module('starter.controllers', [])
         $scope.account = data;
         $scope.closeLogin();
       }else{
-        $scope.showAlert(JSON.stringify(data.ret));
+        $scope.showAlert('登录失败','帐号或密码不正确,请重新登录');
       }
     });
 
   };
-  $scope.showAlert = function(code) {
+  $scope.showAlert = function(title,template) {
    var alertPopup = $ionicPopup.alert({
-     title: 'Error username or password!',
-     template: 'Please check your username and password . error code:'+code
+     title: title,
+     template: template
    });
    alertPopup.then(function(res) {
      console.log('Thank you for checking login');
@@ -106,13 +106,33 @@ angular.module('starter.controllers', [])
   }).then(function(modal) {
     $scope.create = modal;
   });
-  
-  $scope.createUser = function(u) {       
-    u.id = ($scope.users.length + 1).toString() ;
-    $scope.users.push(u);
-    $scope.create.hide();
+  $scope.showCreateUser = function(){
+    $scope.newUser = {};
+    $scope.newUser.type = 1;
+    $scope.data.showDelete=false;
+    $scope.create.show();
+  }
+  $scope.createUser = function(u) {   
+    Users.add(u).then(function (data) {
+      console.log("createUser back",data);
+      if(data.ret == -1){
+        $scope.showAlert('创角失败','帐号名已存在');
+        return;
+      } 
+      if(data.ret == 1){
+        $scope.usersRefresh();
+      } 
+      $scope.create.hide();
+    });
   };
-
+  $scope.deleteUser = function(index){
+    Users.del($scope.users[index].id).then(function (data) {
+      console.log("deleteUser back",data);
+      if(data.ret == 1){
+        $scope.users.splice(index, 1);
+      } 
+    });
+  }
   $scope.data = {
     showDelete: false
   };
@@ -128,9 +148,20 @@ angular.module('starter.controllers', [])
 })
 
 .controller('UserDetailCtrl', function($scope, $stateParams, $ionicHistory, Users) {
-  $scope.user = Users.get($stateParams.userId);
+  Users.get($stateParams.userId).then(function (data) {
+    $scope.user  = data;
+  });
   $scope.alt = function (user) {
-    console.log("alt",user);
+    Users.alt(user).then(function (data) {
+      console.log("Users alt back",data);
+      if(data.ret == -1){
+        $scope.showAlert('修改失败','帐号名已存在');
+        return;
+      } 
+      if(data.ret == 1){
+        //
+      }
+    });
     $ionicHistory.goBack();
   };
 })
