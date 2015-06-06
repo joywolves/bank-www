@@ -4,13 +4,13 @@ angular.module('starter.services', [])
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
-
+  var HOST = "luanhailiang.cn";
   return {
     login: function (account, pass) {
       var deffered = $q.defer();
       $http({
         method:"JSONP",
-        url:"http://127.0.0.1/bank/user/login.php?callback=JSON_CALLBACK&account="+account+"&pass="+pass
+        url:"http://"+HOST+"/bank/user/login.php?callback=JSON_CALLBACK&account="+account+"&pass="+pass
       }).success(function(data){
         deffered.resolve(data);
       }).error(function(){
@@ -22,7 +22,7 @@ angular.module('starter.services', [])
       var deffered = $q.defer();
       $http({
         method:"JSONP",
-        url:"http://127.0.0.1/bank/user/all.php?callback=JSON_CALLBACK"
+        url:"http://"+HOST+"/bank/user/all.php?callback=JSON_CALLBACK"
       }).success(function(data){
         deffered.resolve(data);
       }).error(function(){
@@ -34,7 +34,7 @@ angular.module('starter.services', [])
       var deffered = $q.defer();
       $http({
         method:"JSONP",
-        url:"http://127.0.0.1/bank/user/all.php?callback=JSON_CALLBACK&id="+userId
+        url:"http://"+HOST+"/bank/user/all.php?callback=JSON_CALLBACK&id="+userId
       }).success(function(data){
         deffered.resolve(data);
       }).error(function(){
@@ -47,7 +47,7 @@ angular.module('starter.services', [])
       var data = JSON.stringify(user);
       $http({
         method:"JSONP",
-        url:"http://127.0.0.1/bank/user/add.php?callback=JSON_CALLBACK&data="+data
+        url:"http://"+HOST+"/bank/user/add.php?callback=JSON_CALLBACK&data="+data
       }).success(function(data){
         deffered.resolve(data);
       }).error(function(){
@@ -60,7 +60,7 @@ angular.module('starter.services', [])
       var data = JSON.stringify(user);
       $http({
         method:"JSONP",
-        url:"http://127.0.0.1/bank/user/alt.php?callback=JSON_CALLBACK&data="+data
+        url:"http://"+HOST+"/bank/user/alt.php?callback=JSON_CALLBACK&data="+data
       }).success(function(data){
         deffered.resolve(data);
       }).error(function(){
@@ -72,7 +72,7 @@ angular.module('starter.services', [])
       var deffered = $q.defer();
       $http({
         method:"JSONP",
-        url:"http://127.0.0.1/bank/user/del.php?callback=JSON_CALLBACK&id="+id
+        url:"http://"+HOST+"/bank/user/del.php?callback=JSON_CALLBACK&id="+id
       }).success(function(data){
         deffered.resolve(data);
       }).error(function(){
@@ -87,13 +87,13 @@ angular.module('starter.services', [])
 
   // Some fake testing data
   var orders;
-
+  var HOST = "luanhailiang.cn";
   return {
     all: function() {
       var deffered = $q.defer();
       $http({
         method:"JSONP",
-        url:"http://127.0.0.1/bank/order/all.php?callback=JSON_CALLBACK"
+        url:"http://"+HOST+"/bank/order/all.php?callback=JSON_CALLBACK"
       }).success(function(data){
         orders = data;
         deffered.resolve(data);
@@ -106,7 +106,7 @@ angular.module('starter.services', [])
       var deffered = $q.defer();
       $http({
         method:"JSONP",
-        url:"http://127.0.0.1/bank/order/alt.php?callback=JSON_CALLBACK&id="+orderId+"&statue="+type
+        url:"http://"+HOST+"/bank/order/alt.php?callback=JSON_CALLBACK&id="+orderId+"&statue="+type
       }).success(function(data){
         deffered.resolve(data);
       }).error(function(){
