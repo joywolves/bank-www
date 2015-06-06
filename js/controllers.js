@@ -154,8 +154,12 @@ angular.module('starter.controllers', [])
   $scope.alt = function (user) {
     Users.alt(user).then(function (data) {
       console.log("Users alt back",data);
-      if(data.ret == -1){
+      if(data.ret == -2){
         $scope.showAlert('修改失败','帐号名已存在');
+        return;
+      } 
+      if(data.ret == -1){
+        $scope.showAlert('修改失败','数据库未发生变化');
         return;
       } 
       if(data.ret == 1){
