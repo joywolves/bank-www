@@ -28,3 +28,7 @@ rm -r /www
 git clone https://github.com/joywolves/bank-www.git ./www
 
 ionic serve
+
+deamon 启动
+
+screen -d -m -L ionic serve -p 8100 --nolivereload
