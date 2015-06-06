@@ -1,0 +1,33 @@
+
+<ion-modal-view>
+  <ion-header-bar class="bar bar-header bar-dark">
+    <h1 class="title">创建</h1>
+    <button class="button button-clear button-primary" ng-click="create.hide()">取消</button>
+  </ion-header-bar>
+  <ion-content class="padding">
+    <div class="list">
+      <label class="item item-input item-select">
+        <div class="input-label">
+          权限
+        </div>
+        <select ng-model="newUser.type">
+          <option selected value="2">超级管理员</option>
+          <option value="1">普通管理员</option>
+        </select>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">帐号</span>
+        <input ng-model="newUser.account" type="text">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">密码</span>
+        <input ng-model="newUser.pass" type="text">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">名称</span>
+        <input ng-model="newUser.name" type="text">
+      </label>
+      <button class="button button-full button-positive" ng-click="createUser(newUser)">创建</button>
+    </div>
+  </ion-content>
+</ion-modal-view>

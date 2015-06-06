@@ -1,0 +1,49 @@
+<ion-view view-title="订单管理">
+  <ion-content class="">
+
+    <ion-refresher on-refresh="orderRefresh()">
+                   
+    </ion-refresher>
+    <ion-list>
+
+      <div class="list card" ng-repeat="order in orders">
+
+        <div class="item item-divider">
+          姓名
+          <span class="item-note">
+            {{order.name}}
+          </span>
+        </div>
+        <div class="item item-divider">
+          公司
+          <span class="item-note">
+            {{order.comname}}
+          </span>
+        </div>
+        <div class="item item-divider">
+          电话
+          <span class="item-note">
+            {{order.phone}}
+          </span>
+        </div>
+        <div class="item item-divider">
+          状态
+          <span class="item-note">
+            {{order.statue}}
+          </span>
+        </div>
+        <div class="item tabs tabs-icon-left">
+          <a class="tab-item" ng-click="agree(order)">
+            <i class="icon ion-checkmark-circled"></i>
+            接受
+          </a>
+          <a class="tab-item" ng-click="reject(order)">
+            <i class="icon ion-close-circled"></i>
+            拒绝
+          </a>
+        </div>
+
+    </ion-list>
+  </ion-content>
+
+</ion-view>

@@ -1,0 +1,27 @@
+<ion-view view-title="用户管理">
+    <ion-nav-buttons side="primary">
+        <button class="button button-icon ion-ios-minus-outline"
+          ng-click="data.showDelete = !data.showDelete;"></button>
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon ion-ios-personadd-outline" ng-click="data.showDelete=false;create.show();">
+        </button>
+    </ion-nav-buttons>
+  <ion-content>
+    <ion-refresher on-refresh="usersRefresh()">
+                   
+    </ion-refresher>
+    <ion-list show-delete="data.showDelete">
+      <ion-item class="item-remove-animate  item-icon-right" ng-repeat="user in users" 
+      				 href="#/tab/users/{{user.id}}">
+
+        <p>{{user.name}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+	    <ion-delete-button class="ion-minus-circled"
+	                       ng-click="users.splice($index, 1)">
+	    </ion-delete-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
